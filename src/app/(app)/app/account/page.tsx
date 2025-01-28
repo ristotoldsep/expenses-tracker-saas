@@ -1,9 +1,17 @@
-import React from 'react'
+// import { checkAuthenticationAndMembership } from "@/lib/server-utils";
 
-const AccountPage = () => {
+export default async function Page() {
+  // const user = await checkAuthenticationAndMembership();
+
+  const user = { email: "Risto" };
+
   return (
-    <div>AccountPage</div>
-  )
-}
+    <div className="text-center">
+      <h1 className="text-3xl font-bold text-white">Account</h1>
 
-export default AccountPage
+      <p className="text-white mt-2">
+        Logged in with email: <span className="font-bold">{user.email}</span>
+      </p>
+    </div>
+  );
+}

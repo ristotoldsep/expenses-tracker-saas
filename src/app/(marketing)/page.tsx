@@ -1,12 +1,12 @@
-// import PurchaseBtn from "@/components/purchase-btn";
-// import { prisma } from "@/lib/db";
+import PurchaseBtn from "@/components/purchase-btn";
+import { prisma } from "@/lib/db";
 // import {
 //   getKindeServerSession,
 //   LoginLink,
 //   RegisterLink,
 // } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
 
 export default async function Home() {
   // const { isAuthenticated, getUser } = getKindeServerSession();
@@ -25,6 +25,9 @@ export default async function Home() {
   //     isPayingMember = true;
   //   }
   // }
+
+  const isLoggedIn = true;
+  const isPayingMember = true;
 
   return (
     <div className="bg-[#5DC9A8] min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 px-5">
@@ -47,15 +50,15 @@ export default async function Home() {
         </p>
 
         <div className="mt-10 space-x-3">
-          {/* {!isLoggedIn ? (
+          {!isLoggedIn ? (
             <>
-              <LoginLink className="bg-black text-white py-2 px-4 rounded-lg font-medium">
+              {/* <LoginLink className="bg-black text-white py-2 px-4 rounded-lg font-medium">
                 Login
               </LoginLink>
 
               <RegisterLink className="bg-black/50 text-white py-2 px-4 rounded-lg font-medium">
                 Register
-              </RegisterLink>
+              </RegisterLink> */}
             </>
           ) : !isPayingMember ? (
             <PurchaseBtn />
@@ -66,7 +69,7 @@ export default async function Home() {
             >
               Go to dashboard
             </Link>
-          )} */}
+          )}
         </div>
       </div>
     </div>
