@@ -6,9 +6,9 @@ type ExpensesListProps = {
     expenses: {
         id: number;
         title: string;
-        description: string;
+        description: string | null;
         amount: number;
-        creatorId: number;
+        creatorId: string;
         createdAt: Date;
         updatedAt: Date;
     }[];

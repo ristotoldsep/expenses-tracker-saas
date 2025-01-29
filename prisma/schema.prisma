@@ -14,7 +14,7 @@ datasource db {
 model Expense {
   id          Int      @id @default(autoincrement())
   title       String
-  description String?
+  description String
   amount      Float
   creatorId   String
   createdAt   DateTime @default(now())
