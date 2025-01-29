@@ -87,13 +87,13 @@ export async function createCheckoutSession() {
         client_reference_id: user.id,
         line_items: [
             {
-                price: "price_1QmgyvCv85vSTgAFpfbelw9b",
+                price: "price_1QmgyvCv85vSTgAFpfbelw9b", // Price ID for the product I created in the Stripe dashboard
                 quantity: 1,
             },
         ],
         mode: "payment",
-        success_url: `${process.env.CANONICAL_URL}/app/dashboard?payment=success`,
-        cancel_url: `${process.env.CANONICAL_URL}`,
+        success_url: `${process.env.CANONICAL_URL}/app/dashboard?payment=success`, // Redirect URL after successful payment
+        cancel_url: `${process.env.CANONICAL_URL}`, // Redirect URL after payment cancellation or failure
     });
 
     redirect(session.url!);
