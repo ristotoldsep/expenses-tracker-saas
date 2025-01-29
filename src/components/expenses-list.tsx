@@ -8,6 +8,7 @@ type ExpensesListProps = {
         title: string;
         description: string;
         amount: number;
+        creatorId: number;
         createdAt: Date;
         updatedAt: Date;
     }[];

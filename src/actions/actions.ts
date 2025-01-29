@@ -1,21 +1,27 @@
+
+
+/**
+ * @file This file contains server-side actions for managing expenses and handling Stripe checkout sessions.
+ */
+
 "use server";
 
 import { prisma } from "@/lib/db";
-// import { checkAuthenticationAndMembership } from "@/lib/server-utils";
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { checkAuthenticationAndMembership } from "@/lib/server-utils";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
-// import Stripe from "stripe";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
 
 export async function addExpense(formData: FormData) {
-    // const user = await checkAuthenticationAndMembership();
+    const user = await checkAuthenticationAndMembership();
 
     await prisma.expense.create({
         data: {
             title: formData.get("title") as string,
             description: formData.get("description") as string,
             amount: Number(formData.get("amount")),
-            // creatorId: user.id,
+            creatorId: user.id,
         },
     });
 
@@ -23,7 +29,7 @@ export async function addExpense(formData: FormData) {
 }
 
 export async function editExpense(formData: FormData, id: number) {
-    // await checkAuthenticationAndMembership();
+    await checkAuthenticationAndMembership();
 
     await prisma.expense.update({
         where: {
@@ -39,7 +45,7 @@ export async function editExpense(formData: FormData, id: number) {
 }
 
 export async function deleteExpense(id: number) {
-    // await checkAuthenticationAndMembership();
+    await checkAuthenticationAndMembership();
 
     await prisma.expense.delete({
         where: {
@@ -50,31 +56,31 @@ export async function deleteExpense(id: number) {
     revalidatePath("/app/dashboard");
 }
 
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-//     apiVersion: "2024-12-18.acacia",
-// });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2025-01-27.acacia"
+});
 
-// export async function createCheckoutSession() {
-//     // authentication check
-//     const { isAuthenticated, getUser } = getKindeServerSession();
-//     if (!(await isAuthenticated())) {
-//         return redirect("/api/auth/login");
-//     }
+export async function createCheckoutSession() {
+    // authentication check
+    const { isAuthenticated, getUser } = getKindeServerSession();
+    if (!(await isAuthenticated())) {
+        return redirect("/api/auth/login");
+    }
 
-//     const user = await getUser();
-//     const session = await stripe.checkout.sessions.create({
-//         customer_email: user.email!,
-//         client_reference_id: user.id,
-//         line_items: [
-//             {
-//                 price: "price_1QigxuJDcR4KvLwWPed0Fltu",
-//                 quantity: 1,
-//             },
-//         ],
-//         mode: "payment",
-//         success_url: `${process.env.CANONICAL_URL}/app/dashboard?payment=success`,
-//         cancel_url: `${process.env.CANONICAL_URL}`,
-//     });
+    const user = await getUser();
+    const session = await stripe.checkout.sessions.create({
+        customer_email: user.email!,
+        client_reference_id: user.id,
+        line_items: [
+            {
+                price: "price_1QmgyvCv85vSTgAFpfbelw9b",
+                quantity: 1,
+            },
+        ],
+        mode: "payment",
+        success_url: `${process.env.CANONICAL_URL}/app/dashboard?payment=success`,
+        cancel_url: `${process.env.CANONICAL_URL}`,
+    });
 
-//     redirect(session.url!);
-// }
+    redirect(session.url!);
+}

@@ -1,6 +1,6 @@
 "use client";
 
-// import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,9 +46,9 @@ export default function AppHeader() {
                 </ul>
             </nav>
 
-            {/* <LogoutLink className="text-white/70 text-[12px] ml-[10px]">
+            <LogoutLink className="text-white/70 text-[12px] ml-[10px]">
                 Logout
-            </LogoutLink> */}
+            </LogoutLink>
         </header>
     );
 }

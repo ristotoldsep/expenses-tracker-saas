@@ -1,9 +1,7 @@
-// import { checkAuthenticationAndMembership } from "@/lib/server-utils";
+import { checkAuthenticationAndMembership } from "@/lib/server-utils";
 
 export default async function Page() {
-  // const user = await checkAuthenticationAndMembership();
-
-  const user = { email: "Risto" };
+  const user = await checkAuthenticationAndMembership();
 
   return (
     <div className="text-center">
