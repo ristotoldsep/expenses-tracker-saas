@@ -45,8 +45,6 @@ export default async function Page({
     },
   });
 
-  console.log(expenses);
-
   return (
     <div>
       <h1 className="text-3xl font-bold text-white text-center">Dashboard</h1>

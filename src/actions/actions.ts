@@ -46,7 +46,21 @@ export async function editExpense(formData: FormData, id: number) {
 
 export async function deleteExpense(id: number) {
     await checkAuthenticationAndMembership();
+    
+    // Fetch the expense to check if the user is the creator
+    const expense = await prisma.expense.findUnique({
+        where: {
+            id: id,
+        },
+        select: { creatorId: true }, // Only select the creatorId field to reduce the data transfer
+    });
 
+    // If no expense is found, throw an error
+    if (!expense) {
+        throw new Error("You are not authorized to delete this expense.");
+    }
+
+    // Proceed with the deletion if the user is the creator
     await prisma.expense.delete({
         where: {
             id: id,
