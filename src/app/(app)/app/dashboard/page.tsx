@@ -30,6 +30,7 @@ export default async function Page({
 }) {
   const paymentValueFromUrl = (await searchParams).payment;
 
+  // Passing waitMs to wait for 3 seconds before redirecting to the login page, because the Stripe webhook may take some time to update the membership status.
   const user = await checkAuthenticationAndMembership(
     paymentValueFromUrl === "success" ? 3000 : 0
   );
