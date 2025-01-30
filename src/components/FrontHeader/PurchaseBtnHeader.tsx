@@ -8,7 +8,7 @@ export default function PurchaseBtnHeader() {
             onClick={async () => {
                 await createCheckoutSession();
             }}
-            className="bg-black text-white px-4 py-2 rounded-lg font-medium"
+            className="bg-black text-white px-5 py-2 rounded-lg font-medium border border-white/10 hover:bg-white hover:text-black transition mr-1"
         >
             Osta liikmelisus
         </button>

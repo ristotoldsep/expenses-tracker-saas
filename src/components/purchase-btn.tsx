@@ -8,7 +8,7 @@ export default function PurchaseBtn() {
             onClick={async () => {
                 await createCheckoutSession();
             }}
-            className="bg-black text-white px-4 py-2 rounded-lg font-medium"
+            className="bg-black text-white px-4 py-2 rounded-lg font-medium glow-button glow-green"
         >
             Osta liikmelisus
         </button>
