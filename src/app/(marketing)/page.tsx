@@ -32,13 +32,14 @@ export default async function Home() {
   return (
     <>
       <FrontHeader isLoggedIn={isLoggedIn} isPayingMember={isPayingMember} />
-      <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 px-5 text-white">
-        <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2 lg:gap-10">
+      <div className="min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 text-white">
+        <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2 lg:gap-10  px-5">
           <Image
             src="/rahavoog_cover.webp"
             alt="Expenses Tracker app preview"
             width={700}
             height={472}
+            style={{ width: "auto", height: "auto" }}
             className="rounded-xl shadow-lg opacity-0 animate-fade-in"
             priority
           />
