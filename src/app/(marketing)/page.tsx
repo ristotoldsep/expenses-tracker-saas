@@ -39,22 +39,22 @@ export default async function Home() {
             alt="Expenses Tracker app preview"
             width={700}
             height={472}
-            className="rounded-md shadow-lg"
+            className="rounded-xl shadow-lg opacity-0 animate-fade-in"
             priority
           />
 
           <div className="text-center xl:text-left d-flex flex-col justify-center">
-            <h1 className="text-4xl lg:text-5xl font-bold my-6 max-w-[500px]">
+            <h1 className="text-4xl lg:text-5xl font-bold my-6 max-w-[500px] opacity-0 animate-fade-in">
               Jälgige oma <span className="text-[#5DC9A8]">rahavooge</span> lihtsalt & mugavalt!
             </h1>
 
-            <p className="text-xl text-gray-300 font-medium max-w-[600px]">
+            <p className="text-xl text-gray-300 font-medium max-w-[600px] opacity-0 animate-fade-in">
               Saage täielik ülevaade oma rahavoogudest – <br /> {" "}
               <span className="font-extrabold text-[#5DC9A8]">eluaegne ligipääs</span>{" "}
               vaid <span className="font-extrabold text-[22px]">1.99€</span> eest.
             </p>
 
-            <div className="mt-10 flex flex-col justify-center lg:flex-row xl:justify-start gap-4">
+            <div className="mt-10 flex flex-col justify-center lg:flex-row xl:justify-start gap-4 opacity-0 animate-fade-in">
               {!isLoggedIn ? (
                 <>
                   <LoginLink className="glow-button">Logi sisse</LoginLink>
