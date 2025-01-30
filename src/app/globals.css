@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.glow-button {
+    @apply relative inline-block px-6 py-3 text-lg font-medium rounded-lg text-white bg-black transition-all duration-300;
+    border: 2px solid transparent;
+    box-shadow: 0px 0px 15px rgba(93, 201, 168, 0.5);
+}
+
+.glow-button:hover {
+    border-color: #5DC9A8;
+    box-shadow: 0px 0px 25px rgba(93, 201, 168, 0.8);
+}
+
+.glow-green {
+    box-shadow: 0px 0px 15px rgba(72, 255, 144, 0.5);
+}
+
+.glow-green:hover {
+    border-color: #48ff90;
+    box-shadow: 0px 0px 25px rgba(72, 255, 144, 0.8);
+}

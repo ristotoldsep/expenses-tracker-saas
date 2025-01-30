@@ -8,7 +8,8 @@
 * TypeScript
 * TailwindCSS
 * Prisma for ORM - database interactions & migrations
-* SQLite for DB
+* SQLite for DB in development
+* PostgreSQL DB in production
 * Kinde for authentication
 * Stripe for payments
 * PostHog for analytics and heatmaps

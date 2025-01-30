@@ -14,8 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Expenses Tracker",
-  description: "Track your expenses with ease",
+  title: "Rahavoog - Jälgi oma raha liikumist!",
+  description: "Rahavoog aitab hallata sissetulekuid ja kulutusi, et saaksite oma raha liikumise kontrolli all hoida!",
+  icons: {
+    icon: "/favicon.png", // Default favicon
+    shortcut: "/favicon.png", // Shortcut icon
+    apple: "/favicon.png", // Apple touch icon
+  },
 };
 
 export default function RootLayout({

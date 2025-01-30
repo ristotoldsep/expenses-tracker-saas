@@ -7,11 +7,15 @@ import { usePathname } from "next/navigation";
 
 const routes = [
     {
+        label: "Avaleht",
+        path: "/",
+    },
+    {
         label: "Dashboard",
         path: "/app/dashboard",
     },
     {
-        label: "Account",
+        label: "Minu konto",
         path: "/app/account",
     },
 ];
@@ -23,10 +27,10 @@ export default function AppHeader() {
         <header className="flex items-center border-b border-white/10 py-2">
             <Link href="/app/dashboard">
                 <Image
-                    src="/logo.png"
+                    src="/rahavoog.webp"
                     alt="Logo"
-                    width={25}
-                    height={25}
+                    width={40}
+                    height={40}
                 />
             </Link>
 

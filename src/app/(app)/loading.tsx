@@ -17,7 +17,7 @@ export default function Loading() {
                     fill="currentFill"
                 />
             </svg>
-            <span>Verifying payment...</span>
+            <span>Loading dashboard...</span>
         </div>
     );
 }
