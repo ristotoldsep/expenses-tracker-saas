@@ -33,9 +33,9 @@ export default async function Home() {
     <>
       <FrontHeader isLoggedIn={isLoggedIn} isPayingMember={isPayingMember} />
       <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 px-5 text-white">
-        <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-10">
+        <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2 lg:gap-10">
           <Image
-            src="/expenses-tracker-cover.png"
+            src="/rahavoog_cover.webp"
             alt="Expenses Tracker app preview"
             width={700}
             height={472}
@@ -43,8 +43,8 @@ export default async function Home() {
             priority
           />
 
-          <div className="text-center xl:text-left">
-            <h1 className="text-5xl font-bold my-6 max-w-[500px]">
+          <div className="text-center xl:text-left d-flex flex-col justify-center">
+            <h1 className="text-4xl lg:text-5xl font-bold my-6 max-w-[500px]">
               Jälgige oma <span className="text-[#5DC9A8]">rahavooge</span> lihtsalt & mugavalt!
             </h1>
 
@@ -54,7 +54,7 @@ export default async function Home() {
               vaid <span className="font-extrabold text-[22px]">1.99€</span> eest.
             </p>
 
-            <div className="mt-10 flex flex-col lg:flex-row gap-4">
+            <div className="mt-10 flex flex-col justify-center lg:flex-row xl:justify-start gap-4">
               {!isLoggedIn ? (
                 <>
                   <LoginLink className="glow-button">Logi sisse</LoginLink>

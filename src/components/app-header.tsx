@@ -23,7 +23,7 @@ export default function AppHeader() {
         <header className="flex items-center border-b border-white/10 py-2">
             <Link href="/">
                 <Image
-                    src="/rahavoog.webp"
+                    src="/rahavoog_logo.webp"
                     alt="Logo"
                     width={40}
                     height={40}
