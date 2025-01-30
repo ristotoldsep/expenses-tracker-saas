@@ -1,4 +1,4 @@
-import FrontHeader from "@/components/front-header";
+import FrontHeader from "@/components/FrontHeader/FrontHeader";
 import PurchaseBtn from "@/components/purchase-btn";
 import { prisma } from "@/lib/db";
 import {
@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <>
-      <FrontHeader />
+      <FrontHeader isLoggedIn={isLoggedIn} isPayingMember={isPayingMember} />
       <div className="bg-gradient-to-br from-gray-900 to-black min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 px-5 text-white">
         <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-10">
           <Image

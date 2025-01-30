@@ -2,7 +2,7 @@
 
 import { createCheckoutSession } from "@/actions/actions";
 
-export default function PurchaseBtn() {
+export default function PurchaseBtnHeader() {
     return (
         <button
             onClick={async () => {
