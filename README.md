@@ -7,7 +7,7 @@ Sign up your account, buy lifetime access and start using the app!
 
 ### Used tools:
 
-* NextJS
+* NextJS 15 - App router
 * TypeScript
 * TailwindCSS
 * Prisma for ORM - database interactions & migrations
