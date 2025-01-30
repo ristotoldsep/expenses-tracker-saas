@@ -21,6 +21,7 @@ export async function addExpense(formData: FormData) {
     const description = formData.get("description") as string | null;
     const amount = formData.get("amount") as string | null;
     const categoryId = formData.get("categoryId") as string | null;
+    const date = formData.get("date") as string | null; // Get date from form
 
     if (!title || title.trim() === "") {
         throw new Error("Pealkiri on kohustuslik!");
@@ -32,6 +33,10 @@ export async function addExpense(formData: FormData) {
 
     if (!categoryId || isNaN(Number(categoryId))) {
         throw new Error("Kategooria on kohustuslik!");
+    }
+
+    if (!date || isNaN(Date.parse(date))) {
+        throw new Error("Kehtiv kuupäev on kohustuslik!");
     }
 
     // Ensure category exists
@@ -51,6 +56,7 @@ export async function addExpense(formData: FormData) {
             amount: Number(amount),
             creatorId: user.id,
             categoryId: Number(categoryId),
+            createdAt: new Date(date), // Store selected date
         },
     });
 

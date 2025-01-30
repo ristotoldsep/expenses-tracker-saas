@@ -2,12 +2,18 @@
 
 import { addExpense } from "@/actions/actions";
 import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 export default function ExpensesForm() {
     const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
+
+    // Get today's date
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(() => {
         async function fetchCategories() {
@@ -39,6 +45,10 @@ export default function ExpensesForm() {
     const handleSubmit = async (formData: FormData) => {
         setError(null);
         setSuccess(null);
+
+        // Format date to YYYY-MM-DD before submitting
+        const formattedDate = format(selectedDate, "yyyy-MM-dd");
+        formData.set("date", formattedDate);
 
         try {
             await addExpense(formData);
@@ -91,6 +101,17 @@ export default function ExpensesForm() {
                 required
             />
 
+            {/* Date Picker */}
+            <div className="mb-3">
+                <p className="text-white mb-2">Vali kuupäev:</p>
+                <DatePicker
+                    selected={selectedDate}
+                    onChange={(date: Date) => setSelectedDate(date)}
+                    dateFormat="yyyy-MM-dd"
+                    className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:ring-2 focus:ring-[#5DC9A8]"
+                />
+            </div>
+
             {/* Category Dropdown */}
             <div className="mb-3">
                 {loading ? (
@@ -100,7 +121,7 @@ export default function ExpensesForm() {
                 ) : (
                     <select
                         name="categoryId"
-                        className="w-full px-4 py-2 rounded-md bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#5DC9A8]"
+                        className="w-full px-4 py-2 rounded-md bg-gray-700 text-white outline-none focus:ring-2 focus:ring-[#5DC9A8]"
                         required
                     >
                         <option value="">Vali kategooria</option>
@@ -116,7 +137,7 @@ export default function ExpensesForm() {
             {/* Submit Button */}
             <button
                 type="submit"
-                className="w-full bg-[#EF4444] text-dark font-bold py-2 mt-3 rounded-md hover:bg-[#DC2626] transition"
+                className="w-full bg-[#EF4444] text-white font-bold py-2 mt-3 rounded-md hover:bg-[#DC2626] transition"
             >
                 Lisa kulu
             </button>
