@@ -29,7 +29,7 @@ export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderP
                 <ul className="flex items-center gap-2 text-xs overflow-hidden">
                     {isLoggedIn ? (
                         isPayingMember ? (
-                            <Link href="/app/dashboard" className="px-2 py-1 hover:text-white transition text-white/100">
+                            <Link href="/app/dashboard" className="px-2 py-1 hover:text-white/100 transition text-white/80">
                                 Mine töölauale
                             </Link>
                         ) : (

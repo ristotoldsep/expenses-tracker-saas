@@ -13,7 +13,7 @@ export default function ExpensesForm() {
     const [success, setSuccess] = useState<string | null>(null);
 
     // Get today's date
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
     useEffect(() => {
         async function fetchCategories() {
@@ -45,6 +45,11 @@ export default function ExpensesForm() {
     const handleSubmit = async (formData: FormData) => {
         setError(null);
         setSuccess(null);
+
+        if (!selectedDate) {
+            setError("Palun vali kuupäev!");
+            return;
+        }
 
         // Format date to YYYY-MM-DD before submitting
         const formattedDate = format(selectedDate, "yyyy-MM-dd");
@@ -101,12 +106,12 @@ export default function ExpensesForm() {
                 required
             />
 
-            {/* Date Picker */}
+            {/* Date Picker (Fixed Type Issue) */}
             <div className="mb-3">
                 <p className="text-white mb-2">Vali kuupäev:</p>
                 <DatePicker
                     selected={selectedDate}
-                    onChange={(date: Date) => setSelectedDate(date)}
+                    onChange={(date) => setSelectedDate(date ?? new Date())} // Fixes the error
                     dateFormat="yyyy-MM-dd"
                     className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:ring-2 focus:ring-[#5DC9A8]"
                 />
