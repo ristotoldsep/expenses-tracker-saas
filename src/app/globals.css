@@ -30,6 +30,10 @@
     /* Slightly lighter border */
 }
 
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
 .react-datepicker__header {
     background-color: #111827 !important;
     /* Even darker header */

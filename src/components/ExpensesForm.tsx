@@ -29,7 +29,6 @@ export default function ExpensesForm() {
                     throw new Error("Invalid data format");
                 }
                 setCategories(data);
-                if (data.length > 0) setSelectedCategory(data[0]); // Default to the first category
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     setError(error.message);
@@ -75,9 +74,9 @@ export default function ExpensesForm() {
     return (
         <form
             onSubmit={(e) => {
-                e.preventDefault(); // Prevent default form submission
+                e.preventDefault();
                 const formData = new FormData(e.currentTarget);
-                handleSubmit(formData); // Call your async handler
+                handleSubmit(formData);
             }}
             className="w-full mt-8 bg-gray-800 p-6 rounded-lg shadow-md"
         >
@@ -123,7 +122,9 @@ export default function ExpensesForm() {
             <div className="mt-4">
                 {loading ? (
                     // Skeleton placeholder for loading state
-                    <div className="w-full h-10 bg-gray-700 animate-pulse rounded-md"></div>
+                    <div className="relative w-full h-10 bg-gray-700 rounded-md flex items-center px-4 text-gray-400">
+                        Vali kategooria
+                    </div>
                 ) : error ? (
                     <p className="text-red-400 text-sm">{error}</p>
                 ) : (
@@ -144,11 +145,12 @@ export default function ExpensesForm() {
                                 leaveTo="opacity-0"
                             >
                                 <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    {/* Actual category options */}
                                     {categories.map((category) => (
                                         <ListboxOption
                                             key={category.id}
                                             className={({ active }) =>
-                                                `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                                `relative cursor-pointer select-none py-2 pl-6 pr-4 ${
                                                     active ? "bg-[#5DC9A8] text-gray-900" : "text-white"
                                                 }`
                                             }
