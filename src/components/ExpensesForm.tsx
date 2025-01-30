@@ -7,6 +7,7 @@ export default function ExpensesForm() {
     const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchCategories() {
@@ -16,14 +17,18 @@ export default function ExpensesForm() {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
-                
+
                 if (!Array.isArray(data)) {
                     throw new Error("Invalid data format");
                 }
 
                 setCategories(data);
-            } catch (error: any) {
-                setError(error.message);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    setError(error.message);
+                } else {
+                    setError("An unknown error occurred");
+                }
             } finally {
                 setLoading(false);
             }
@@ -31,10 +36,34 @@ export default function ExpensesForm() {
         fetchCategories();
     }, []);
 
+    const handleSubmit = async (formData: FormData) => {
+        setError(null);
+        setSuccess(null);
+
+        try {
+            await addExpense(formData);
+            setSuccess("Kulu edukalt lisatud!");
+        } catch (err) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("Midagi läks valesti!");
+            }
+        }
+    };
+
     return (
-        <form action={addExpense} className="w-full mt-8 bg-gray-800 p-6 rounded-lg shadow-md">
+        <form
+            action={handleSubmit}
+            className="w-full mt-8 bg-gray-800 p-6 rounded-lg shadow-md"
+        >
             <h2 className="text-xl font-semibold text-white mb-4">Lisa uus kulu</h2>
 
+            {/* Success/Error Messages */}
+            {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+            {success && <p className="text-green-500 text-sm mb-3">{success}</p>}
+
+            {/* Title Input */}
             <input
                 type="text"
                 name="title"
@@ -43,6 +72,7 @@ export default function ExpensesForm() {
                 required
             />
 
+            {/* Description Input */}
             <input
                 type="text"
                 name="description"
@@ -50,6 +80,7 @@ export default function ExpensesForm() {
                 className="w-full px-4 py-2 mb-3 rounded-md bg-gray-700 text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#5DC9A8]"
             />
 
+            {/* Amount Input */}
             <input
                 type="number"
                 name="amount"
@@ -60,7 +91,7 @@ export default function ExpensesForm() {
                 required
             />
 
-            {/* Category Dropdown with Loading & Error Handling */}
+            {/* Category Dropdown */}
             <div className="mb-3">
                 {loading ? (
                     <p className="text-gray-400 text-sm">Laadimine...</p>
@@ -82,9 +113,10 @@ export default function ExpensesForm() {
                 )}
             </div>
 
+            {/* Submit Button */}
             <button
                 type="submit"
-                className="w-full bg-[#5DC9A8] text-black font-bold py-2 mt-3 rounded-md hover:bg-[#4cb292] transition"
+                className="w-full bg-[#EF4444] text-dark font-bold py-2 mt-3 rounded-md hover:bg-[#DC2626] transition"
             >
                 Lisa kulu
             </button>

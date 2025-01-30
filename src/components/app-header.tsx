@@ -29,7 +29,7 @@ export default function AppHeader() {
                     width={40}
                     height={40}
                     priority
-                    className="cursor-pointer"
+                    className="cursor-pointer rounded-lg"
                 />
             </Link>
 

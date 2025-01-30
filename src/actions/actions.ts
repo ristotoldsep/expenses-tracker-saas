@@ -16,12 +16,41 @@ import Stripe from "stripe";
 export async function addExpense(formData: FormData) {
     const user = await checkAuthenticationAndMembership();
 
+    // Extract and validate form data
+    const title = formData.get("title") as string | null;
+    const description = formData.get("description") as string | null;
+    const amount = formData.get("amount") as string | null;
+    const categoryId = formData.get("categoryId") as string | null;
+
+    if (!title || title.trim() === "") {
+        throw new Error("Pealkiri on kohustuslik!");
+    }
+
+    if (!amount || isNaN(Number(amount)) || Number(amount) <= 0) {
+        throw new Error("Summa peab olema positiivne number!");
+    }
+
+    if (!categoryId || isNaN(Number(categoryId))) {
+        throw new Error("Kategooria on kohustuslik!");
+    }
+
+    // Ensure category exists
+    const category = await prisma.expenseCategory.findUnique({
+        where: { id: Number(categoryId) },
+    });
+
+    if (!category) {
+        throw new Error("Valitud kategooriat ei eksisteeri!");
+    }
+
+    // Create the expense
     await prisma.expense.create({
         data: {
-            title: formData.get("title") as string,
-            description: formData.get("description") as string,
-            amount: Number(formData.get("amount")),
+            title,
+            description: description || "",
+            amount: Number(amount),
             creatorId: user.id,
+            categoryId: Number(categoryId),
         },
     });
 

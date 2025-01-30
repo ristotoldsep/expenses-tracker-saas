@@ -21,11 +21,12 @@ export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderP
                     width={40}
                     height={40}
                     priority
+                    className="cursor-pointer rounded-lg"
                 />
             </Link>
 
             <nav className="ml-auto">
-                <ul className="flex items-center gap-2 text-xs">
+                <ul className="flex items-center gap-2 text-xs overflow-hidden">
                     {isLoggedIn ? (
                         isPayingMember ? (
                             <Link href="/app/dashboard" className="px-2 py-1 hover:text-white transition text-white/100">

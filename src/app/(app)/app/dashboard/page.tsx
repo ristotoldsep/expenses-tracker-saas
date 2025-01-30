@@ -17,8 +17,8 @@
  * @returns {JSX.Element} The rendered dashboard page component.
  */
 
-import ExpensesForm from "@/components/expenses-form";
-import ExpensesList from "@/components/expenses-list";
+import ExpensesForm from "@/components/ExpensesForm";
+import ExpensesList from "@/components/ExpensesList";
 import { prisma } from "@/lib/db";
 import { checkAuthenticationAndMembership } from "@/lib/server-utils";
 import { redirect } from "next/navigation";
@@ -43,6 +43,9 @@ export default async function Page({
     where: {
       creatorId: user.id,
     },
+    include: {
+      category: true, // This joins the ExpenseCategory table to fetch category name
+    },
   });
 
   return (
@@ -51,7 +54,7 @@ export default async function Page({
         Tere{user?.given_name ? `, ${user.given_name}` : ""}! 👋
       </h1>
 
-      <div className="w-full max-w-[600px] mx-auto">
+      <div className="w-full max-w-[600px] mx-auto mt-8">
         <ExpensesList expenses={expenses} />
 
         <ExpensesForm />
