@@ -27,6 +27,7 @@ export default function AppHeader() {
                     alt="Logo"
                     width={40}
                     height={40}
+                    priority
                 />
             </Link>
 
