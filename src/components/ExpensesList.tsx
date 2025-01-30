@@ -9,7 +9,7 @@ type Expense = {
     description: string | null;
     amount: number;
     creatorId: string;
-    category?: { name: string }; // Updated to include category name
+    category?: { name: string } | null; // Allow `null` category
     createdAt: Date;
     updatedAt: Date;
 };
@@ -21,7 +21,7 @@ type ExpensesListProps = {
 export default function ExpensesList({ expenses }: ExpensesListProps) {
     const [loading, setLoading] = useState<number | null>(null);
 
-    console.log(expenses);
+    // console.log(expenses);
 
     return (
         <ul className="w-full bg-gray-800 rounded-lg shadow-md divide-y divide-gray-700 overflow-hidden">

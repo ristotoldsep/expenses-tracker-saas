@@ -1,5 +1,5 @@
 import FrontHeader from "@/components/FrontHeader/FrontHeader";
-import PurchaseBtn from "@/components/purchase-btn";
+import PurchaseBtn from "@/components/PurchaseBtn";
 import { prisma } from "@/lib/db";
 import {
   getKindeServerSession,
