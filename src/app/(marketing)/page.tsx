@@ -32,7 +32,7 @@ export default async function Home() {
   return (
     <>
       <FrontHeader isLoggedIn={isLoggedIn} isPayingMember={isPayingMember} />
-      <div className="min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 text-white">
+      <div className="min-h-screen flex flex-col xl:flex-row items-center justify-center gap-10 text-white py-[100px]">
         <div className="max-w-[1300px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2 lg:gap-10  px-5">
           <Image
             src="/rahavoog_cover.webp"
