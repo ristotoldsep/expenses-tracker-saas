@@ -1,4 +1,4 @@
-# Income/Expenses Tracker SaaS App "Rahavoog"
+# Income/Expenses Tracker SaaS App - "Rahavoog"
 
 ## This is a full-stack NextJS app for tracking your expenses as a SaaS. 
 
