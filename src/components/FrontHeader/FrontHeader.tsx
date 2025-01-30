@@ -3,7 +3,6 @@
 import { LoginLink, LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import PurchaseBtnHeader from "./PurchaseBtnHeader";
 
 interface FrontHeaderProps {
@@ -12,7 +11,6 @@ interface FrontHeaderProps {
 }
 
 export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderProps) {
-    const pathname = usePathname();
 
     return (
         <header className="flex items-center py-2 px-5 absolute top-0 left-0 right-0 z-10 bg-transparent backdrop-blur-md max-w-[1300px] mx-auto">
