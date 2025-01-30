@@ -16,11 +16,11 @@ const routes = [
     },
 ];
 
-export default function AppHeader() {
+export default function FrontHeader() {
     const pathname = usePathname();
 
     return (
-        <header className="flex items-center border-b border-white/10 py-2">
+        <header className="flex items-center py-2 px-5 absolute top-0 left-0 right-0 z-10 bg-transparent backdrop-blur-md max-w-[1300px] mx-auto">
             <Link href="/">
                 <Image
                     src="/rahavoog.webp"

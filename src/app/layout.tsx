@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Rahavoog - Jälgi oma raha liikumist!",
-  description: "Rahavoog aitab hallata sissetulekuid ja kulutusi, et saaksite oma raha liikumise kontrolli all hoida!",
+  description: "Rahavoog on nutikas rakendus, mis aitab Sul oma sissetulekuid ja kulutusi hallata, et saavutada parem finantskontroll ja selgus.",
   icons: {
     icon: "/favicon.png", // Default favicon
     shortcut: "/favicon.png", // Shortcut icon
