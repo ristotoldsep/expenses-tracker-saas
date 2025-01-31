@@ -14,7 +14,7 @@ export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderP
 
     return (
         <header className="flex items-center py-4 px-5 absolute top-0 left-0 right-0 z-10 bg-transparent backdrop-blur-md max-w-[1300px] mx-auto">
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-2 text-white/80 text-sm font-semibold">
                 <Image
                     src="/rahavoog_logo.webp"
                     alt="Logo"
@@ -23,6 +23,7 @@ export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderP
                     priority
                     className="cursor-pointer rounded-lg"
                 />
+                <span className="animate-fade-in">Rahavoog</span>
             </Link>
 
             <nav className="ml-auto">
