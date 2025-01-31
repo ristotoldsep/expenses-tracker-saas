@@ -46,6 +46,9 @@ export default async function Page({
     include: {
       category: true, // This joins the ExpenseCategory table to fetch category name
     },
+    orderBy: {
+      createdAt: "desc", // ✅ Sort by newest first
+    },
   });
 
   return (

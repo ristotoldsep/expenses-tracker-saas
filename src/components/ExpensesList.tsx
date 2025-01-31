@@ -52,7 +52,11 @@ export default function ExpensesList({ expenses }: ExpensesListProps) {
                                 €{expense.amount.toFixed(2)}
                             </p>
                             <p className="text-xs text-gray-400">
-                                {new Date(expense.createdAt).toLocaleDateString("et-EE")}
+                            {new Date(expense.createdAt).toLocaleDateString("et-EE", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                            }).replace(/\//g, ".")}
                             </p>
                         </div>
 

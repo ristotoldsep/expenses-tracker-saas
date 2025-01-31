@@ -43,10 +43,21 @@ export default function ExpensesForm() {
         setError(null);
         setSuccess(null);
     
-        if (!selectedDate) {
-            setError("Palun vali kuupäev!");
+         // ✅ Check if selectedDate is a valid date
+        if (!selectedDate || isNaN(selectedDate.getTime())) {
+            setError("Palun vali kehtiv kuupäev!");
             return;
         }
+
+        // ✅ Ensure the date format is correctly transformed
+        try {
+            const formattedDate = format(selectedDate, "yyyy-MM-dd");
+            formData.set("date", formattedDate);
+        } catch {
+            setError("Kuupäev on vales vormingus!");
+            return;
+        }
+        
         if (!selectedCategory) {
             setError("Palun vali kategooria!");
             return;
@@ -117,6 +128,7 @@ export default function ExpensesForm() {
                         dateFormat="dd.MM.yyyy"
                         locale={et}
                         className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:ring-2 focus:ring-[#5DC9A8]"
+                        onKeyDown={(e) => e.preventDefault()} // ✅ Prevents manual input
                     />
                 </div>
             </div>
