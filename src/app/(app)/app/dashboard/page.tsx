@@ -49,12 +49,12 @@ export default async function Page({
   });
 
   return (
-    <div className="w-full max-w-full lg:max-w-[1300px] mx-auto px-4 py-8">
+    <div className="w-full max-w-full lg:max-w-[1300px] mx-auto py-8">
       <h1 className="text-3xl font-bold text-white text-center">
         Tere{user?.given_name ? `, ${user.given_name}` : ""}! 👋
       </h1>
 
-      <div className="w-full max-w-full lg:max-w-[600px] mx-auto mt-8">
+      <div className="max-w-full sm:max-w-[550px] mx-auto mt-8">
         <ExpensesList expenses={expenses} />
 
         <ExpensesForm />

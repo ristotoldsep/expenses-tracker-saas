@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbars for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar in Firefox */
+html {
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar in Edge & IE */
+body {
+    -ms-overflow-style: none;
+}
+
 .glow-button {
     @apply relative inline-block px-6 py-3 text-lg font-medium rounded-lg text-white bg-black transition-all duration-300;
     border: 2px solid transparent;

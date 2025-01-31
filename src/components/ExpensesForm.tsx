@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import { et } from "date-fns/locale";
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from "@headlessui/react";
+import { Listbox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 export default function ExpensesForm() {
@@ -42,10 +42,10 @@ export default function ExpensesForm() {
         fetchCategories();
     }, []);
 
-    const handleSubmit = async (formData: FormData) => {
+    const handleSubmit = async (formData: FormData, formElement: HTMLFormElement) => {
         setError(null);
         setSuccess(null);
-
+    
         if (!selectedDate) {
             setError("Palun vali kuupäev!");
             return;
@@ -54,14 +54,20 @@ export default function ExpensesForm() {
             setError("Palun vali kategooria!");
             return;
         }
-
+    
         const formattedDate = format(selectedDate, "yyyy-MM-dd");
         formData.set("date", formattedDate);
         formData.set("categoryId", selectedCategory.id.toString());
-
+    
         try {
             await addExpense(formData);
             setSuccess("Kulu edukalt lisatud!");
+    
+            // ✅ Reset fields only on success
+            setSelectedCategory(null);
+            setSelectedDate(new Date());
+            formElement.reset(); // Reset text and number inputs
+    
         } catch (err) {
             if (err instanceof Error) {
                 setError(err.message);
@@ -76,7 +82,7 @@ export default function ExpensesForm() {
             onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData(e.currentTarget);
-                handleSubmit(formData);
+                handleSubmit(formData, e.currentTarget); // Pass the form element for resetting
             }}
             className="w-full mt-8 bg-gray-800 p-6 rounded-lg shadow-md"
         >
@@ -120,65 +126,56 @@ export default function ExpensesForm() {
 
             {/* Custom Select Dropdown for Category */}
             <div className="mt-4">
-                {loading ? (
-                    // Skeleton placeholder for loading state
-                    <div className="relative w-full h-10 bg-gray-700 rounded-md flex items-center px-4 text-gray-400">
-                        Vali kategooria
-                    </div>
-                ) : error ? (
-                    <p className="text-red-400 text-sm">{error}</p>
-                ) : (
-                    <Listbox value={selectedCategory} onChange={setSelectedCategory}>
-                        <div className="relative mt-1">
-                            <ListboxButton className="relative w-full cursor-pointer rounded-md bg-gray-700 text-white py-2 pl-4 pr-10 text-left outline-none focus:ring-2 focus:ring-[#5DC9A8]">
-                                <span className="block truncate">
-                                    {selectedCategory ? selectedCategory.name : "Vali kategooria"}
-                                </span>
-                                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                </span>
-                            </ListboxButton>
-                            <Transition
-                                as={Fragment}
-                                leave="transition ease-in duration-100"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                    {/* Actual category options */}
-                                    {categories.map((category) => (
-                                        <ListboxOption
-                                            key={category.id}
-                                            className={({ active }) =>
-                                                `relative cursor-pointer select-none py-2 pl-6 pr-4 ${
-                                                    active ? "bg-[#5DC9A8] text-gray-900" : "text-white"
-                                                }`
-                                            }
-                                            value={category}
-                                        >
-                                            {({ selected }) => (
-                                                <>
-                                                    <span
-                                                        className={`block truncate ${
-                                                            selected ? "font-medium" : "font-normal"
-                                                        }`}
-                                                    >
-                                                        {category.name}
+                <Listbox value={selectedCategory} onChange={setSelectedCategory}>
+                    <div className="relative mt-1">
+                        <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-gray-700 text-white py-2 pl-4 pr-10 text-left outline-none focus:ring-2 focus:ring-[#5DC9A8]">
+                            <span className="block truncate">
+                                {selectedCategory ? selectedCategory.name : "Vali kategooria"}
+                            </span>
+                            <span className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                            </span>
+                        </Listbox.Button>
+                        <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                {/* Actual category options */}
+                                {categories.map((category) => (
+                                    <Listbox.Option
+                                        key={category.id}
+                                        className={({ active }) =>
+                                            `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                                active ? "bg-[#5DC9A8] text-gray-900" : "text-white"
+                                            }`
+                                        }
+                                        value={category}
+                                    >
+                                        {({ selected }) => (
+                                            <>
+                                                <span
+                                                    className={`block truncate ${
+                                                        selected ? "font-medium" : "font-normal"
+                                                    }`}
+                                                >
+                                                    {category.name}
+                                                </span>
+                                                {selected && (
+                                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                                        <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
                                                     </span>
-                                                    {selected && (
-                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                                                            <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
-                                                        </span>
-                                                    )}
-                                                </>
-                                            )}
-                                        </ListboxOption>
-                                    ))}
-                                </ListboxOptions>
-                            </Transition>
-                        </div>
-                    </Listbox>
-                )}
+                                                )}
+                                            </>
+                                        )}
+                                    </Listbox.Option>
+                                ))}
+                            </Listbox.Options>
+                        </Transition>
+                    </div>
+                </Listbox>
             </div>
 
             <button
