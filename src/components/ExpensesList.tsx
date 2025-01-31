@@ -24,7 +24,7 @@ export default function ExpensesList({ expenses }: ExpensesListProps) {
     // console.log(expenses);
 
     return (
-        <ul className="w-full bg-gray-800 rounded-lg shadow-md divide-y divide-gray-700 overflow-hidden">
+        <ul className="w-full bg-gray-800 rounded-lg shadow-md divide-y divide-gray-700 max-h-[500px] overflow-y-auto no-scrollbar">
             {expenses.length > 0 ? (
                 expenses.map((expense) => (
                     <li

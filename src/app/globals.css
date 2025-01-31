@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    overflow: auto !important;
+}
+
 /* Hide scrollbars for WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
     display: none;

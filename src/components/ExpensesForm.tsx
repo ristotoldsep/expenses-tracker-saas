@@ -6,13 +6,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import { et } from "date-fns/locale";
-import { Listbox, Transition } from "@headlessui/react";
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 export default function ExpensesForm() {
     const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<{ id: number; name: string } | null>(null);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -35,8 +34,6 @@ export default function ExpensesForm() {
                 } else {
                     setError("An unknown error occurred");
                 }
-            } finally {
-                setLoading(false);
             }
         }
         fetchCategories();
@@ -128,24 +125,24 @@ export default function ExpensesForm() {
             <div className="mt-4">
                 <Listbox value={selectedCategory} onChange={setSelectedCategory}>
                     <div className="relative mt-1">
-                        <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-gray-700 text-white py-2 pl-4 pr-10 text-left outline-none focus:ring-2 focus:ring-[#5DC9A8]">
+                        <ListboxButton className="relative w-full cursor-pointer rounded-md bg-gray-700 text-white py-2 pl-4 pr-10 text-left outline-none focus:ring-2 focus:ring-[#5DC9A8]">
                             <span className="block truncate">
                                 {selectedCategory ? selectedCategory.name : "Vali kategooria"}
                             </span>
                             <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                             </span>
-                        </Listbox.Button>
+                        </ListboxButton>
                         <Transition
                             as={Fragment}
                             leave="transition ease-in duration-100"
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                         >
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 {/* Actual category options */}
                                 {categories.map((category) => (
-                                    <Listbox.Option
+                                    <ListboxOption
                                         key={category.id}
                                         className={({ active }) =>
                                             `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
@@ -170,9 +167,9 @@ export default function ExpensesForm() {
                                                 )}
                                             </>
                                         )}
-                                    </Listbox.Option>
+                                    </ListboxOption>
                                 ))}
-                            </Listbox.Options>
+                            </ListboxOptions>
                         </Transition>
                     </div>
                 </Listbox>
