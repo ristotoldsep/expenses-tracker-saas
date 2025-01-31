@@ -15,6 +15,7 @@ export default function ExpensesForm() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
     useEffect(() => {
         async function fetchCategories() {
@@ -113,10 +114,16 @@ export default function ExpensesForm() {
                 <div>
                     <DatePicker
                         selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date ?? new Date())}
+                        onChange={(date) => {
+                            setSelectedDate(date ?? new Date());
+                            setIsDatePickerOpen(false); // Close calendar on selection
+                        }}
                         dateFormat="dd.MM.yyyy"
                         locale={et}
                         className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:ring-2 focus:ring-[#5DC9A8]"
+                        onClickOutside={() => setIsDatePickerOpen(false)}
+                        onFocus={() => setIsDatePickerOpen(true)}
+                        open={isDatePickerOpen}
                     />
                 </div>
             </div>
