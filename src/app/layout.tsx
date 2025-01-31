@@ -30,8 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-[#0E1420]">
+      {/* <head> */}
+        {/* <script src="https://unpkg.com/react-scan/dist/auto.global.js" async /> */}
+        {/* rest of your scripts go under */}
+      {/* </head> */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-gray-900 to-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-gray-800 to-black`}
       >
         <PostHogProvider>
           {children}

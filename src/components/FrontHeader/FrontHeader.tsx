@@ -13,7 +13,7 @@ interface FrontHeaderProps {
 export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderProps) {
 
     return (
-        <header className="flex items-center py-4 px-5 absolute top-0 left-0 right-0 z-10 bg-transparent backdrop-blur-md max-w-[1300px] mx-auto">
+        <header className="flex items-center py-4 px-5 absolute top-0 left-0 right-0 z-10 max-w-[1300px] mx-auto border-solid border-blue-500 border-opacity-25">
             <Link href="/" className="flex items-center gap-2 text-white/80 text-sm font-semibold">
                 <Image
                     src="/rahavoog_logo.webp"
