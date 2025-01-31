@@ -40,7 +40,7 @@ export default async function Home() {
             width={700}
             height={472}
             style={{ width: "auto", height: "auto" }}
-            className="rounded-xl shadow-lg opacity-0 animate-fade-in flex-1 max-h-[300px] md:max-h-full max-w-[100%] xl:max-w-[50%]"
+            className="rounded-xl shadow-lg opacity-0 animate-fade-in max-w-[100%] xl:max-w-[50%] max-h-[300px] md:max-h-[400px] xl:max-h-[none]"
             priority
           />
 
