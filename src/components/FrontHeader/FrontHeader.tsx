@@ -23,7 +23,7 @@ export default function FrontHeader({ isLoggedIn, isPayingMember }: FrontHeaderP
                     priority
                     className="cursor-pointer rounded-lg"
                 />
-                <span className="animate-fade-in">Rahavoog</span>
+                <span>Rahavoog</span>
             </Link>
 
             <nav className="ml-auto">

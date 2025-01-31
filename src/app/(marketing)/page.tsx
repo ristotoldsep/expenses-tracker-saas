@@ -40,11 +40,11 @@ export default async function Home() {
             width={700}
             height={472}
             style={{ width: "auto", height: "auto" }}
-            className="rounded-xl shadow-lg opacity-0 animate-fade-in"
+            className="rounded-xl shadow-lg opacity-0 animate-fade-in flex-1 max-w-[100%] xl:max-w-[50%]"
             priority
           />
 
-          <div className="text-center xl:text-left d-flex flex-col justify-center">
+          <div className="text-center xl:text-left d-flex flex-col justify-center flex-1 max-w-[100%] xl:max-w-[50%]">
             <h1 className="text-4xl lg:text-5xl font-bold my-6 max-w-[500px] opacity-0 animate-fade-in">
               Jälgige oma <span className="text-[#5DC9A8]">rahavooge</span> lihtsalt & mugavalt!
             </h1>
