@@ -1,5 +1,5 @@
 ![Rahavoog Logo](https://raw.githubusercontent.com/ristotoldsep/expenses-tracker-saas/refs/heads/main/public/favicon.png) 
-# Income/Expenses Tracker SaaS App - "Rahavoog" (Version 1.32)
+# Income/Expenses Tracker SaaS App - "Rahavoog" (Version 1.33)
 
 ## This is a full-stack NextJS app for tracking your income & expenses as a SaaS. 
 
