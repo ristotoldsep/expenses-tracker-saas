@@ -92,7 +92,7 @@ export async function deleteExpense(id: number) {
 
     // If no expense is found, throw an error
     if (!expense) {
-        throw new Error("You are not authorized to delete this expense.");
+        throw new Error("Sul pole piisavalt õigusi et seda kulu kustutada.");
     }
 
     // Proceed with the deletion if the user is the creator
