@@ -122,7 +122,7 @@ export async function createCheckoutSession() {
         client_reference_id: user.id,
         line_items: [
             {
-                price: "price_1QmgyvCv85vSTgAFpfbelw9b", // Price ID for the product I created in the Stripe dashboard
+                price: "price_1QoYE2Cv85vSTgAFU7vGcZtP", // Price ID for the product I created in the Stripe dashboard
                 quantity: 1,
             },
         ],
